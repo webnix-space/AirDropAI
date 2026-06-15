@@ -1,0 +1,28 @@
+{
+  "project": "AirDrop AI Mesh Node",
+  "hackathon": "QVAC Hackathon I - Unleash Edge AI",
+  "track": "Mobile",
+  "generated_at": "2026-06-15T17:00:00Z",
+  "remote_apis": [],
+  "local_apis": [
+    {
+      "package": "@qvac/sdk",
+      "functions": [
+        "loadModel",
+        "unloadModel",
+        "completion",
+        "ragSaveEmbeddings",
+        "ragSearch",
+        "config.setLogLevel"
+      ],
+      "purpose": "Local on-device AI inference, embeddings, and RAG"
+    }
+  ],
+  "third_party_services": [],
+  "network_usage": {
+    "description": "Zero remote API calls during normal operation.",
+    "model_download": "Models are downloaded once from QVAC distributed registry via HTTPS during first loadModel() call, then cached locally.",
+    "p2p": "Future versions may use QVAC Holepunch for P2P delegation (no central servers)."
+  },
+  "note": "This application is designed for complete offline operation. All AI inference, embeddings, and vector search run locally on the device GPU/CPU. No user data, prompts, or documents are transmitted to any remote server."
+}
