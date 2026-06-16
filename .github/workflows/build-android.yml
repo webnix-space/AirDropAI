@@ -32,7 +32,7 @@ jobs:
           sdkmanager "ndk;25.2.9519653" "cmake;3.22.1"
           
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
         
       - name: Expo prebuild
         run: npx expo prebuild --clean --platform android
