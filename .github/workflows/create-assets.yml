@@ -1,0 +1,19 @@
+name: Create placeholder assets
+on:
+  workflow_dispatch:
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p assets
+          apt-get install -y imagemagick
+          convert -size 1024x1024 xc:#0A0A0A assets/icon.png
+          convert -size 1024x1024 xc:#0A0A0A assets/adaptive-icon.png
+          convert -size 1242x2436 xc:#0A0A0A assets/splash-icon.png
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: add placeholder assets"
