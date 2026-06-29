@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "AirDrop AI Mesh Node",
-    "slug": "airdrop-ai-mesh-node",
+    "slug": "airdropai",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
