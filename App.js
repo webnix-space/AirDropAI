@@ -18,6 +18,7 @@ let loadModel, completion, unloadModel, ragSaveEmbeddings, ragSearch, LLAMA_3_2_
 
 try {
   const sdk = require('@qvac/sdk');
+  console.log('QVAC exports:', Object.keys(sdk).join(', '));
   loadModel = sdk.loadModel;
   completion = sdk.completion;
   unloadModel = sdk.unloadModel;
