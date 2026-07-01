@@ -1,4 +1,4 @@
-name: Create placeholder assets
+name: Fix assets
 on:
   workflow_dispatch:
 jobs:
@@ -8,12 +8,21 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install sharp
       - run: |
-          mkdir -p assets
-          sudo apt-get install -y imagemagick
-          convert -size 1024x1024 xc:#0A0A0A assets/icon.png
-          convert -size 1024x1024 xc:#0A0A0A assets/adaptive-icon.png
-          convert -size 1242x2436 xc:#0A0A0A assets/splash-icon.png
+          node -e "
+          const sharp = require('sharp');
+          const make = (w,h,f) => sharp({create:{width:w,height:h,channels:4,background:{r:8,g:8,b:8,alpha:1}}}).png().toFile(f);
+          Promise.all([
+            make(1024,1024,'assets/icon.png'),
+            make(1024,1024,'assets/adaptive-icon.png'),
+            make(1284,2778,'assets/splash-icon.png'),
+          ]).then(()=>console.log('done'));
+          "
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: add placeholder assets"
+          commit_message: "fix: replace assets with sharp-generated PNGs"
+          file_pattern: assets/*.png
